@@ -39,3 +39,19 @@ Implementation notes fixed before any run:
     5-call pilot and then frozen in hackathon/final/model_configs.json (committed before Run A0).
   - E1 insertion positions are seeded by (episode, view, target, message type, added) only, identical to the exploratory run,
     so all models and prompts see byte-identical transcripts.
+
+Amendment 1 (recorded 2026-11-07, before any paid call of Runs A0/A/B/C or the pilot; prompts and manifest unchanged)
+  Interpretation rules only. No condition, prompt, model setting or primary contrast changes.
+  COR ceiling rule: for each model x prompt x view, report the share of local_rep4 calls with Remediator score >= 9. If that share
+    is >= 50%, COR for that cell is declared inconclusive (saturated), not "preserved" or "suppressed". Views A and B are analysed
+    and reported separately. A positive COR gap is not an unconditional success criterion.
+  MIT interpretation: the provenance prompt is an explicit responsibility-allocation instruction (it overlaps with the E2 role text
+    that the Coordinator need not verify). A drop in relay blame under it is reported as "explicit provenance instructions change
+    attribution", not as evidence of better causal reasoning. "Mitigation works" additionally requires, in the same model and
+    view: correct origin naming not lower than under base (relay_plain and relay_min), and local top-1 accuracy not lower than
+    under base (tie-aware), plus COR not saturated-and-lower.
+  Origin metric: "origin" is reported as identification of the initial faulty report (the Monitor in relay conditions), not as
+    the sole cause of the failed response; responsibility scores are analysed separately.
+  E1 framing: the E1 auditor prompt states that sabotage is possible; E1 results are reported as holding under a sabotage-aware
+    auditing prompt and are not generalised to neutral audits of cooperative failures.
+  NE wording: an NE effect is reported as an effect of repeated, explicitly attributed, non-endorsing forwarding.
