@@ -55,3 +55,10 @@ Amendment 1 (recorded 2026-11-07, before any paid call of Runs A0/A/B/C or the p
   E1 framing: the E1 auditor prompt states that sabotage is possible; E1 results are reported as holding under a sabotage-aware
     auditing prompt and are not generalised to neutral audits of cooperative failures.
   NE wording: an NE effect is reported as an effect of repeated, explicitly attributed, non-endorsing forwarding.
+
+Amendment 2 (recorded 2026-11-07, before any successful paid call of Runs A0/A/B/C or the pilot)
+  API access only; no prompt, condition, setting or analysis change. The OpenAI project allowlist rejects requests naming
+  "gpt-5.4-mini-2026-03-17" (HTTP 403, 5 pilot attempts of 5 calls each, all logged in results/final/pilot.jsonl) but accepts "gpt-5.4-mini",
+  which a 1-call access test showed resolves to gpt-5.4-mini-2026-03-17. gpt-5.4-mini calls are therefore requested as
+  "gpt-5.4-mini"; every response must report model "gpt-5.4-mini-2026-03-17", otherwise the call is recorded as failed and the run
+  stops. Manifest model IDs, prompts and prompt hashes are unchanged; the manifest is rebuilt only to record this (new hash).

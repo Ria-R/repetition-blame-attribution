@@ -11,8 +11,8 @@
  },
  "code_sha256_at_manifest_build": {
   "exposure.py": "7ffa697c5cd8bb8cee53404dfb7ab18bec8aa2ac42cd4998be8b317723133c79",
-  "final_common.py": "af60e681dba674d4a7e46701c2c7e5214ad8c25183b8e19878a070fc739d6dd0",
-  "final_run.py": "a1a6818c1bd99b40e09b8fa3980eba1da48291728586d631768eec4d3673cd04",
+  "final_common.py": "eceba90b592a3820c56bdc52b4947c3df4218a6f69af888ef173ca15d0a20b92",
+  "final_run.py": "b022649463007918d42611597973100b56082014487b89f09d9d1d681ca0a467",
   "relay.py": "3f46c2db42510353f337dc37aac21ab00f3d2b3dc76665e7d0c9f9c2bd6bec23"
  },
  "description": "Frozen evaluation manifest for the final pre-registered runs (A0, A, B, C).",
@@ -42948,9 +42948,15 @@
  ],
  "models": {
   "gpt-4o-mini": "requested as the gpt-4o-mini alias, as in the exploratory runs; returned snapshot is recorded per call",
-  "gpt-5.4-mini-2026-03-17": "exact snapshot"
+  "gpt-5.4-mini-2026-03-17": "exact snapshot; requested as gpt-5.4-mini (project allowlist), every response must report this snapshot"
  },
  "n_evaluations": 2888,
+ "request_names": {
+  "gpt-5.4-mini-2026-03-17": "gpt-5.4-mini"
+ },
+ "required_returned_snapshot": {
+  "gpt-5.4-mini-2026-03-17": "gpt-5.4-mini-2026-03-17"
+ },
  "script_versions": {
   "E1": "exposure-v2",
   "E2": "relay-v2"

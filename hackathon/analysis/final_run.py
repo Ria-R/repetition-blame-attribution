@@ -23,8 +23,8 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / "experiments" / "collusion"))
 import exposure  # noqa: E402
 import relay  # noqa: E402
-from final_common import (CANDIDATE_SETTINGS, PROVENANCE_SUFFIX, call_api, messages_sha,  # noqa: E402
-                          sha256_text)
+from final_common import (CANDIDATE_SETTINGS, PROVENANCE_SUFFIX, REQUEST_NAME, REQUIRED_RETURNED,  # noqa: E402
+                          call_api, messages_sha, sha256_text)
 
 FINAL = REPO / "hackathon" / "final"
 MANIFEST = FINAL / "manifest.json"
@@ -128,12 +128,13 @@ def build_manifest():
     man = dict(
         description="Frozen evaluation manifest for the final pre-registered runs (A0, A, B, C).",
         models={M4O: "requested as the gpt-4o-mini alias, as in the exploratory runs; returned snapshot is recorded per call",
-                M54: "exact snapshot"},
+                M54: "exact snapshot; requested as gpt-5.4-mini (project allowlist), every response must report this snapshot"},
         system_prompt_sha256={f"{exp}:{pv}": sha256_text(msg) for exp, base in (("E1", exposure.SYSTEM), ("E2", relay.SYSTEM))
                               for pv, msg in (("base", base), ("provenance", base + "\n\n" + PROVENANCE_SUFFIX))},
         code_sha256_at_manifest_build=code,
         script_versions={"E1": exposure.SCRIPT_VERSION, "E2": relay.SCRIPT_VERSION},
         candidate_settings=CANDIDATE_SETTINGS,
+        request_names=REQUEST_NAME, required_returned_snapshot=REQUIRED_RETURNED,
         n_evaluations=len(ents),
         evaluations=ents,
     )
@@ -218,7 +219,7 @@ def execute(ents, settings_by_model, manifest_sha, out_path, workers, label):
         st = settings_by_model[e["model"]]
         res = call_api(e["model"], msgs, st)
         rec = {k: v for k, v in e.items() if k != "input_chars"}
-        rec.update(model_requested=e["model"], model_returned=res["model_returned"], api_settings=st,
+        rec.update(model_requested=REQUEST_NAME.get(e["model"], e["model"]), model_id=e["model"], model_returned=res["model_returned"], api_settings=st,
                    git_commit=commit, manifest_sha256=manifest_sha, script_version=(exposure.SCRIPT_VERSION if e["experiment"] == "E1" else relay.SCRIPT_VERSION),
                    raw=res["raw"], finish_reason=res["finish_reason"], usage=res["usage"], error=res["error"])
         if res["ok"]:

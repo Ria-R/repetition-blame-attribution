@@ -44,6 +44,12 @@ CANDIDATE_SETTINGS = {
 }
 
 
+# Amendment 2: the project allowlist only admits the undated name, so gpt-5.4-mini is REQUESTED as "gpt-5.4-mini" and every
+# response must report the pinned snapshot; any other returned model is recorded as a failure and stops the run.
+REQUEST_NAME = {"gpt-5.4-mini-2026-03-17": "gpt-5.4-mini"}
+REQUIRED_RETURNED = {"gpt-5.4-mini-2026-03-17": "gpt-5.4-mini-2026-03-17"}
+
+
 def call_api(model: str, messages, settings: dict, retries: int = 6) -> dict:
     """One chat completion. Never raises: returns a record with raw text or the error."""
     import requests
@@ -52,10 +58,16 @@ def call_api(model: str, messages, settings: dict, retries: int = 6) -> dict:
     last_err = None
     for k in range(retries):
         try:
-            r = requests.post(url, headers=hdr, timeout=300, json={"model": model, "messages": messages, **settings})
+            r = requests.post(url, headers=hdr, timeout=300,
+                              json={"model": REQUEST_NAME.get(model, model), "messages": messages, **settings})
             if r.ok:
                 j = r.json()
                 ch = j["choices"][0]
+                need = REQUIRED_RETURNED.get(model)
+                if need and j.get("model") != need:
+                    return dict(ok=False, raw=ch["message"].get("content"), finish_reason=ch.get("finish_reason"),
+                                model_returned=j.get("model"), usage=j.get("usage", {}), http_status=r.status_code,
+                                error=f"snapshot mismatch: returned {j.get('model')}, required {need}", fatal=True)
                 return dict(ok=True, raw=ch["message"].get("content") or "", finish_reason=ch.get("finish_reason"),
                             model_returned=j.get("model"), usage=j.get("usage", {}), http_status=r.status_code, error=None)
             last_err = f"HTTP {r.status_code}: {r.text[:500]}"
