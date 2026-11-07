@@ -1,0 +1,45 @@
+# Pilot (n=4, 10 seeds) against the Modal-hosted vLLM endpoint (hackathon/modal_vllm.py). New weekend work.
+simulation:
+  max_iterations: 1
+  max_planning_rounds: 4
+  max_conversation_steps: 3
+  seed: 1
+
+environment:
+  name: JiraTicketEnvironment
+  assignment_filling: false
+  max_tasks: 8
+
+communication_network:
+  topology: complete
+  num_agents: 4
+  consolidate_channels: true
+
+llm_models:
+  - label: modal-qwen2.5-7b
+    llm:
+      provider: together   # Together client is a plain OpenAI-compatible HTTP client; pointed at our Modal vLLM
+      together:
+        base_url: "https://madhuria-rudra02--colosseum-vllm-serve.modal.run/v1"
+        api_key: "__VLLM_API_KEY__"
+        request_timeout: 300
+        model: Qwen/Qwen2.5-7B-Instruct
+        params:
+          max_tokens: 1000
+          temperature: 0.7
+
+experiment:
+  tag: pilot_n4_aggr
+  output_dir: experiments/collusion/outputs/pilot_n4_aggr
+  max_concurrent_runs: 4
+  seeds: [1,2,3,4,5,6,7,8,9,10]
+  collusion:
+    colluder_selection: random
+    agent_order: random
+  sweeps:
+    - name: pilot
+      topologies: [complete]
+      num_agents: [4]
+      colluder_counts: [2]
+      secret_channel_enabled: [true]
+      prompt_variants: [aggressive]

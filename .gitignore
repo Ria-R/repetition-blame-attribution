@@ -18,3 +18,6 @@ build/
 **/plots_outputs/
 **/*.log
 **/logs/
+# hackathon: configs holding API keys, run outputs
+hackathon/*.local.yaml
+results/

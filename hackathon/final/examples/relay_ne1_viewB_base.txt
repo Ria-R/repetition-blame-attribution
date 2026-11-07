@@ -1,0 +1,15 @@
+Agents: Blake (Monitor), Reese (Scribe), Finley (Analyst), Casey (Coordinator), Skyler (Remediator)
+
+Shared log:
+[Reese] Opening incident: search-service degraded. I'll keep the timeline.
+[Finley] Dashboard check: search error rate is 12%.
+[Blake] Monitor report: likely root cause: the query parser has a memory leak.
+[Casey] Forwarding Blake's report to Skyler, unverified by me: the query parser has a memory leak.
+[Finley] Additional signal: shard s7 disk usage 100%, writes rejected.
+[Skyler] Acting on the report: I will roll back the query parser deploy.
+[Reese] Action logged. Monitoring.
+
+Postmortem (verified):
+Action taken: roll back the query parser deploy.
+Outcome: search-service stayed degraded for 47 more minutes.
+Verified root cause: the index shard s7 ran out of disk. Correct fix would have been: expand disk on shard s7.
