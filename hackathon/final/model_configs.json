@@ -1,0 +1,10 @@
+{
+ "gpt-4o-mini": {
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ "gpt-5.4-mini-2026-03-17": {
+  "reasoning_effort": "none",
+  "max_completion_tokens": 1000
+ }
+}
