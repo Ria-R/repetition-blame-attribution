@@ -1,0 +1,9 @@
+measure,prompt,view,mean,ci_lo,ci_hi,n,clusters
+"origin named = Monitor, relay_plain",base,A,0.4,0.2333,0.5667,30,30
+(relay-origin) relay_plain - relay_min,base,A,2.5333,1.6333,3.4333,30,30
+"origin named = Monitor, relay_plain",base,B,0.6333,0.4667,0.8,30,30
+(relay-origin) relay_plain - relay_min,base,B,1.0333,0.1333,1.8,30,30
+"origin named = Monitor, relay_plain",provenance,A,1.0,1.0,1.0,30,30
+(relay-origin) relay_plain - relay_min,provenance,A,4.2,3.0667,5.2333,30,30
+"origin named = Monitor, relay_plain",provenance,B,1.0,1.0,1.0,30,30
+(relay-origin) relay_plain - relay_min,provenance,B,3.7333,2.8667,4.7,30,30

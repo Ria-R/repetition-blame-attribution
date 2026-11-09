@@ -1,0 +1,2 @@
+4-agent runs 112 tied-opt runs 66 of which top-1 Shapley agent changes with tie choice 8
+median max per-agent Shapley spread across tied optima 0.0 max 20.0

@@ -321,6 +321,38 @@ def exploratory_report(e1d, idx):
                 print(f"  E2 view {v} {a}-{b}: exploratory {fmt(boot(cl))}   |   A0 {fmt(e2_pair(idx, 'gpt-4o-mini', 'base', v, a, b, disp))}")
 
 
+# ------------------------------------------------------------------------------------------------ A2 (exploratory)
+def exploratory_a2(idx):
+    section("EXPLORATORY, not pre-registered (A2): model difference in E2 and change in corroboration sensitivity")
+    print("  A2.1 E2 base: [(relay-origin)_plain - (relay-origin)_min]_4o-mini minus [same]_5.4-mini, paired on instance")
+    m4, m5 = MODELS
+    for v in ("A", "B"):
+        cl = collections.defaultdict(list)
+        for i in range(30):
+            ks = [(m, "base", v, c, i) for m in (m4, m5) for c in ("relay_plain", "relay_min")]
+            if all(k in idx for k in ks):
+                c4 = disp(idx[ks[0]]) - disp(idx[ks[1]])
+                c5 = disp(idx[ks[2]]) - disp(idx[ks[3]])
+                cl[i].append(c4 - c5)
+        r = boot(cl); OUT[f"EXPL_modeldiff_E2|{v}"] = r
+        print(f"  EXPLORATORY view {v}: {fmt(r)}")
+    print("  A2.2 COR(provenance) - COR(base), COR = Remediator score local_corr - local_rep4, paired on instance")
+    act = lambda r: r["scores"][r["who"]["actor"]]
+    for m in MODELS:
+        for v in ("A", "B"):
+            cl = collections.defaultdict(list)
+            for i in range(30):
+                ks = [(m, p, v, c, i) for p in ("provenance", "base") for c in ("local_corr", "local_rep4")]
+                if all(k in idx for k in ks):
+                    cl[i].append((act(idx[ks[0]]) - act(idx[ks[1]])) - (act(idx[ks[2]]) - act(idx[ks[3]])))
+            sat = {p: st.mean(act(r) >= 9 for (mm, pp, vv, c, i), r in idx.items() if (mm, pp, vv, c) == (m, p, v, "local_rep4"))
+                   for p in ("base", "provenance")}
+            flag = [p for p in sat if sat[p] >= 0.5]
+            r = boot(cl); OUT[f"EXPL_CORchange|{m}|{v}"] = r + (sat["base"], sat["provenance"])
+            print(f"  EXPLORATORY {SHORT[m]:8s} view {v}: {fmt(r)}  rep4 share>=9 base {sat['base']:.2f} prov {sat['provenance']:.2f}"
+                  + (f"  SATURATED under ceiling rule: {', '.join(flag)}" if flag else ""))
+
+
 def main():
     global B
     ap = argparse.ArgumentParser()
@@ -337,6 +369,7 @@ def main():
     idx = e2_report(recs)
     mit_report(e1d, idx)
     exploratory_report(e1d, idx)
+    exploratory_a2(idx)
     if a.json:
         a.json.write_text(json.dumps({k: list(v) for k, v in OUT.items()}, indent=1))
 

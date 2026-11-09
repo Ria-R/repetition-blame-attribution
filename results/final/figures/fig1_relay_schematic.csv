@@ -1,0 +1,5 @@
+from,to,message,order
+Monitor,Coordinator,diagnosis (wrong root cause in relay conditions),1
+Coordinator,Remediator,"forward citing Monitor (x1 relay_min, x4 relay_plain)",2
+Analyst,log,counter-evidence (posted after all Coordinator lines),3
+Remediator,system,acts on the forwarded report,4

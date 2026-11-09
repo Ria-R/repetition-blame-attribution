@@ -3,7 +3,7 @@ from pathlib import Path
 root=Path(sys.argv[1]); random.seed(0)
 acc=collections.defaultdict(lambda:collections.defaultdict(list))
 for fs in root.rglob("final_summary.json"):
-    d=fs.parent; sweep=d.parts[-2]
+    d=fs.parent; sweep=d.relative_to(root).parts[0]  # top-level sweep folder (run names repeat across sweeps)
     cfg=json.loads((d/"run_config.json").read_text())
     col=set(cfg.get("colluders") or [])
     if not col: continue

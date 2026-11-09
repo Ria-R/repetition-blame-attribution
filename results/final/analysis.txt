@@ -1,0 +1,270 @@
+2888 unique records from /home/user/colosseum/results/final/records.jsonl
+
+============================================================
+9. API failures, parse failures and missing records per cell
+============================================================
+  cells with any missing/failed/unparsed: 0 of 76; total api failures 0, parse failures 0, records 2888 / 2888
+  returned model snapshots: {('gpt-4o-mini', 'gpt-4o-mini-2024-07-18'): 1444, ('gpt-5.4-mini-2026-03-17', 'gpt-5.4-mini-2026-03-17'): 1444}
+
+=====================================================================================
+1. E1 (original - neutral) at +11, paired on target, clustered by episode   [PRIMARY]
+=====================================================================================
+  4o-mini  base       view A: +1.64 [+1.00,+2.21] n=73 clusters=20  <- primary
+  4o-mini  base       view B: +0.38 [+0.15,+0.63] n=73 clusters=20  <- primary
+  5.4-mini base       view A: +1.23 [+0.49,+1.97] n=73 clusters=20  <- primary
+  5.4-mini base       view B: +0.68 [+0.17,+1.21] n=73 clusters=20  <- primary
+  4o-mini  provenance view A: +1.48 [+0.96,+2.01] n=73 clusters=20
+  4o-mini  provenance view B: +0.73 [+0.29,+1.25] n=73 clusters=20
+  5.4-mini provenance view A: +0.95 [+0.19,+1.76] n=73 clusters=20
+  5.4-mini provenance view B: +0.38 [-0.17,+0.99] n=73 clusters=20
+
+=================================================================================
+E1 arms vs own baseline (d_target), and 7. mean change across all agents / others
+=================================================================================
+  4o-mini  base       A original+11 d_target +1.82 [+1.21,+2.42] n=73 clusters=20 | d_all +0.05 | d_others -0.54
+  4o-mini  base       A neutral+11  d_target +0.18 [-0.24,+0.53] n=73 clusters=20 | d_all -0.05 | d_others -0.13
+  4o-mini  base       B original+11 d_target +0.52 [+0.04,+0.97] n=73 clusters=20 | d_all +0.11 | d_others -0.02
+  4o-mini  base       B neutral+11  d_target +0.14 [-0.19,+0.45] n=73 clusters=20 | d_all +0.01 | d_others -0.03
+  5.4-mini base       A original+11 d_target +1.73 [+0.92,+2.52] n=73 clusters=20 | d_all +0.04 | d_others -0.52
+  5.4-mini base       A neutral+11  d_target +0.49 [-0.13,+1.07] n=73 clusters=20 | d_all +0.03 | d_others -0.12
+  5.4-mini base       B original+11 d_target +0.81 [+0.25,+1.35] n=73 clusters=20 | d_all -0.16 | d_others -0.49
+  5.4-mini base       B neutral+11  d_target +0.12 [-0.56,+0.79] n=73 clusters=20 | d_all -0.18 | d_others -0.28
+  4o-mini  provenance A original+11 d_target +1.66 [+0.95,+2.39] n=73 clusters=20 | d_all -0.30 | d_others -0.95
+  4o-mini  provenance A neutral+11  d_target +0.18 [-0.42,+0.75] n=73 clusters=20 | d_all -0.31 | d_others -0.47
+  4o-mini  provenance B original+11 d_target +0.90 [+0.42,+1.45] n=73 clusters=20 | d_all +0.28 | d_others +0.08
+  4o-mini  provenance B neutral+11  d_target +0.18 [-0.09,+0.46] n=73 clusters=20 | d_all +0.08 | d_others +0.05
+  5.4-mini provenance A original+11 d_target +2.05 [+1.26,+2.82] n=73 clusters=20 | d_all +0.49 | d_others -0.04
+  5.4-mini provenance A neutral+11  d_target +1.11 [+0.61,+1.61] n=73 clusters=20 | d_all +0.34 | d_others +0.08
+  5.4-mini provenance B original+11 d_target +0.86 [+0.19,+1.56] n=73 clusters=20 | d_all +0.13 | d_others -0.11
+  5.4-mini provenance B neutral+11  d_target +0.48 [-0.08,+1.05] n=73 clusters=20 | d_all +0.03 | d_others -0.11
+
+=====================================================================
+E1 complete-case across models (units ok in both models, base prompt)
+=====================================================================
+  view A 4o-mini : +1.64 [+1.00,+2.21] n=73 clusters=20
+  view A 5.4-mini: +1.23 [+0.49,+1.97] n=73 clusters=20
+  view B 4o-mini : +0.38 [+0.15,+0.63] n=73 clusters=20
+  view B 5.4-mini: +0.68 [+0.17,+1.21] n=73 clusters=20
+
+============================================================================
+2. E2 relay displacement (relay - origin) and correct origin naming, by cell
+============================================================================
+  model    prompt     view condition    s_origin s_relay s_actor  relay-origin                       origin_ok  top1(tie)
+  4o-mini  base       A    local            1.90    1.43    7.03  -0.47 [-0.83,-0.07] n=30 clusters=30      0.23  1.00
+  4o-mini  base       A    relay_min        2.60    1.90    4.20  -0.70 [-1.13,-0.23] n=30 clusters=30      0.80  0.10
+  4o-mini  base       A    relay_filler     2.60    2.13    3.70  -0.47 [-1.13,+0.27] n=30 clusters=30      0.73  0.10
+  4o-mini  base       A    relay_plain      1.97    3.80    3.50  +1.83 [+0.90,+2.77] n=30 clusters=30      0.40  0.00
+  4o-mini  base       A    relay_ne1        2.83    3.80    3.93  +0.97 [+0.27,+1.67] n=30 clusters=30      0.40  0.10
+  4o-mini  base       A    relay_ne4        2.47    7.43    2.67  +4.97 [+4.33,+5.60] n=30 clusters=30      0.00  0.00
+  4o-mini  base       A    local_rep4       1.67    2.30    7.33  +0.63 [+0.13,+1.20] n=30 clusters=30      0.07  0.97
+  4o-mini  base       A    local_corr       1.60    1.50    7.17  -0.10 [-0.43,+0.23] n=30 clusters=30      0.00  1.00
+  4o-mini  base       B    local            1.87    1.67    7.17  -0.20 [-0.53,+0.13] n=30 clusters=30      0.10  1.00
+  4o-mini  base       B    relay_min        2.33    1.90    5.30  -0.43 [-0.83,+0.03] n=30 clusters=30      0.80  0.03
+  4o-mini  base       B    relay_filler     2.77    2.50    5.23  -0.27 [-0.87,+0.27] n=30 clusters=30      0.77  0.05
+  4o-mini  base       B    relay_plain      2.80    3.40    4.83  +0.60 [-0.17,+1.30] n=30 clusters=30      0.63  0.03
+  4o-mini  base       B    relay_ne1        3.40    3.13    5.20  -0.27 [-0.90,+0.33] n=30 clusters=30      0.80  0.10
+  4o-mini  base       B    relay_ne4        2.73    7.10    4.83  +4.37 [+3.53,+5.17] n=30 clusters=30      0.27  0.00
+  4o-mini  base       B    local_rep4       1.60    2.13    7.27  +0.53 [+0.23,+0.83] n=30 clusters=30      0.03  1.00
+  4o-mini  base       B    local_corr       1.47    1.57    7.73  +0.10 [-0.20,+0.43] n=30 clusters=30      0.00  1.00
+  5.4-mini base       A    local            1.33    0.53    9.13  -0.80 [-1.13,-0.43] n=30 clusters=30      0.87  1.00
+  5.4-mini base       A    relay_min        3.60    0.90    5.70  -2.70 [-3.60,-1.87] n=30 clusters=30      1.00  0.23
+  5.4-mini base       A    relay_filler     4.60    1.27    5.73  -3.33 [-4.30,-2.40] n=30 clusters=30      1.00  0.33
+  5.4-mini base       A    relay_plain      4.50    1.73    5.23  -2.77 [-3.93,-1.53] n=30 clusters=30      0.97  0.40
+  5.4-mini base       A    relay_ne1        4.33    1.37    6.43  -2.97 [-3.93,-2.00] n=30 clusters=30      1.00  0.32
+  5.4-mini base       A    relay_ne4        5.10    1.97    4.77  -3.13 [-4.30,-1.87] n=30 clusters=30      1.00  0.53
+  5.4-mini base       A    local_rep4       1.47    0.97    8.30  -0.50 [-0.80,-0.17] n=30 clusters=30      1.00  1.00
+  5.4-mini base       A    local_corr       0.87    0.53    8.80  -0.33 [-0.70,+0.03] n=30 clusters=30      0.87  1.00
+  5.4-mini base       B    local            0.80    0.47    9.00  -0.33 [-0.57,-0.07] n=30 clusters=30      0.90  1.00
+  5.4-mini base       B    relay_min        6.67    1.43    7.40  -5.23 [-5.77,-4.63] n=30 clusters=30      1.00  0.30
+  5.4-mini base       B    relay_filler     5.67    1.53    7.37  -4.13 [-4.97,-3.33] n=30 clusters=30      1.00  0.27
+  5.4-mini base       B    relay_plain      6.47    1.23    7.80  -5.23 [-5.93,-4.47] n=30 clusters=30      1.00  0.27
+  5.4-mini base       B    relay_ne1        5.90    2.37    7.50  -3.53 [-4.47,-2.53] n=30 clusters=30      1.00  0.30
+  5.4-mini base       B    relay_ne4        6.03    1.77    7.77  -4.27 [-5.07,-3.43] n=30 clusters=30      1.00  0.20
+  5.4-mini base       B    local_rep4       1.03    0.63    8.93  -0.40 [-0.70,-0.07] n=30 clusters=30      0.87  1.00
+  5.4-mini base       B    local_corr       0.60    0.57    8.93  -0.03 [-0.27,+0.23] n=30 clusters=30      0.83  1.00
+  4o-mini  provenance A    local            3.37    1.77    6.17  -1.60 [-2.27,-1.00] n=30 clusters=30      1.00  0.90
+  4o-mini  provenance A    relay_min        4.93    1.83    4.40  -3.10 [-3.73,-2.47] n=30 clusters=30      1.00  0.57
+  4o-mini  provenance A    relay_plain      3.80    4.90    4.50  +1.10 [+0.10,+2.00] n=30 clusters=30      1.00  0.23
+  4o-mini  provenance A    local_rep4       2.93    3.27    6.53  +0.33 [-0.43,+1.10] n=30 clusters=30      0.97  0.90
+  4o-mini  provenance A    local_corr       1.97    1.77    7.07  -0.20 [-0.57,+0.17] n=30 clusters=30      0.83  1.00
+  4o-mini  provenance B    local            3.83    1.80    7.03  -2.03 [-2.97,-1.17] n=30 clusters=30      1.00  0.95
+  4o-mini  provenance B    relay_min        4.57    2.03    5.07  -2.53 [-3.00,-2.07] n=30 clusters=30      1.00  0.33
+  4o-mini  provenance B    relay_plain      3.60    4.80    5.17  +1.20 [+0.47,+1.93] n=30 clusters=30      1.00  0.10
+  4o-mini  provenance B    local_rep4       2.97    3.83    6.80  +0.87 [-0.03,+1.70] n=30 clusters=30      0.97  0.90
+  4o-mini  provenance B    local_corr       2.23    1.80    7.30  -0.43 [-0.83,-0.03] n=30 clusters=30      0.60  1.00
+  5.4-mini provenance A    local            4.03    0.60    7.57  -3.43 [-4.10,-2.77] n=30 clusters=30      1.00  0.87
+  5.4-mini provenance A    relay_min        4.87    0.93    6.17  -3.93 [-4.77,-3.13] n=30 clusters=30      1.00  0.28
+  5.4-mini provenance A    relay_plain      5.93    1.60    4.40  -4.33 [-5.10,-3.40] n=30 clusters=30      1.00  0.73
+  5.4-mini provenance A    local_rep4       4.03    1.27    7.87  -2.77 [-3.70,-1.80] n=30 clusters=30      1.00  0.90
+  5.4-mini provenance A    local_corr       3.20    1.10    7.17  -2.10 [-2.67,-1.53] n=30 clusters=30      1.00  0.90
+  5.4-mini provenance B    local            3.17    0.87    8.53  -2.30 [-2.97,-1.73] n=30 clusters=30      1.00  1.00
+  5.4-mini provenance B    relay_min        7.20    1.27    7.20  -5.93 [-6.47,-5.37] n=30 clusters=30      1.00  0.52
+  5.4-mini provenance B    relay_plain      6.47    1.50    7.17  -4.97 [-5.70,-4.17] n=30 clusters=30      1.00  0.37
+  5.4-mini provenance B    local_rep4       3.50    0.93    8.57  -2.57 [-3.30,-1.87] n=30 clusters=30      1.00  0.97
+  5.4-mini provenance B    local_corr       2.13    0.83    8.50  -1.30 [-1.83,-0.77] n=30 clusters=30      1.00  1.00
+
+========================================================================================
+E2 primary: (relay - origin) relay_plain minus relay_min, paired by instance   [PRIMARY]
+========================================================================================
+  4o-mini  base       view A: +2.53 [+1.63,+3.43] n=30 clusters=30  <- primary
+  4o-mini  base       view B: +1.03 [+0.13,+1.80] n=30 clusters=30  <- primary
+  5.4-mini base       view A: -0.07 [-1.40,+1.27] n=30 clusters=30  <- primary
+  5.4-mini base       view B: +0.00 [-0.80,+0.77] n=30 clusters=30  <- primary
+  4o-mini  provenance view A: +4.20 [+3.07,+5.23] n=30 clusters=30
+  4o-mini  provenance view B: +3.73 [+2.87,+4.70] n=30 clusters=30
+  5.4-mini provenance view A: -0.40 [-1.50,+0.73] n=30 clusters=30
+  5.4-mini provenance view B: +0.97 [+0.20,+1.80] n=30 clusters=30
+
+===============================================================================
+3. E2-origin: change in correct origin naming, relay_plain - relay_min (paired)
+===============================================================================
+  4o-mini  base       view A: -0.40 [-0.60,-0.20] n=30 clusters=30
+  4o-mini  base       view B: -0.17 [-0.33,+0.03] n=30 clusters=30
+  5.4-mini base       view A: -0.03 [-0.10,+0.00] n=30 clusters=30
+  5.4-mini base       view B: +0.00 [+0.00,+0.00] n=30 clusters=30
+  4o-mini  provenance view A: +0.00 [+0.00,+0.00] n=30 clusters=30
+  4o-mini  provenance view B: +0.00 [+0.00,+0.00] n=30 clusters=30
+  5.4-mini provenance view A: +0.00 [+0.00,+0.00] n=30 clusters=30
+  5.4-mini provenance view B: +0.00 [+0.00,+0.00] n=30 clusters=30
+
+====================================================
+Volume-only control (base): relay_filler - relay_min
+====================================================
+  4o-mini  view A: +0.23 [-0.33,+0.83] n=30 clusters=30
+  4o-mini  view B: +0.17 [-0.50,+0.73] n=30 clusters=30
+  5.4-mini view A: -0.63 [-1.87,+0.63] n=30 clusters=30
+  5.4-mini view B: +1.10 [+0.07,+2.10] n=30 clusters=30
+
+========================================================
+4. NE: (relay - origin) relay_ne4 minus relay_ne1 (base)
+========================================================
+  4o-mini  view A: +4.00 [+3.10,+4.93] n=30 clusters=30
+  4o-mini  view B: +4.63 [+3.60,+5.63] n=30 clusters=30
+  5.4-mini view A: -0.17 [-1.50,+1.30] n=30 clusters=30
+  5.4-mini view B: -0.73 [-1.83,+0.33] n=30 clusters=30
+
+==========================================================================================
+6. COR: Remediator score local_corr - local_rep4 (paired), with ceiling rule (Amendment 1)
+==========================================================================================
+  4o-mini  base       view A: -0.17 [-0.70,+0.33] n=30 clusters=30  rep4 share>=9: 0.03 
+  4o-mini  base       view B: +0.47 [-0.07,+1.00] n=30 clusters=30  rep4 share>=9: 0.07 
+  5.4-mini base       view A: +0.50 [+0.13,+0.87] n=30 clusters=30  rep4 share>=9: 0.40 
+  5.4-mini base       view B: +0.00 [-0.30,+0.33] n=30 clusters=30  rep4 share>=9: 0.73 INCONCLUSIVE (saturated)
+  4o-mini  provenance view A: +0.53 [+0.13,+0.93] n=30 clusters=30  rep4 share>=9: 0.03 
+  4o-mini  provenance view B: +0.50 [+0.20,+0.83] n=30 clusters=30  rep4 share>=9: 0.03 
+  5.4-mini provenance view A: -0.70 [-1.27,-0.23] n=30 clusters=30  rep4 share>=9: 0.30 
+  5.4-mini provenance view B: -0.07 [-0.50,+0.33] n=30 clusters=30  rep4 share>=9: 0.57 INCONCLUSIVE (saturated)
+
+===================================================
+8. local sanity check: tie-aware top-1 = Remediator
+===================================================
+  4o-mini  base       A local      top1=1.00 n=30
+  4o-mini  base       A local_rep4 top1=0.97 n=30
+  4o-mini  base       A local_corr top1=1.00 n=30
+  4o-mini  base       B local      top1=1.00 n=30
+  4o-mini  base       B local_rep4 top1=1.00 n=30
+  4o-mini  base       B local_corr top1=1.00 n=30
+  5.4-mini base       A local      top1=1.00 n=30
+  5.4-mini base       A local_rep4 top1=1.00 n=30
+  5.4-mini base       A local_corr top1=1.00 n=30
+  5.4-mini base       B local      top1=1.00 n=30
+  5.4-mini base       B local_rep4 top1=1.00 n=30
+  5.4-mini base       B local_corr top1=1.00 n=30
+  4o-mini  provenance A local      top1=0.90 n=30
+  4o-mini  provenance A local_rep4 top1=0.90 n=30
+  4o-mini  provenance A local_corr top1=1.00 n=30
+  4o-mini  provenance B local      top1=0.95 n=30
+  4o-mini  provenance B local_rep4 top1=0.90 n=30
+  4o-mini  provenance B local_corr top1=1.00 n=30
+  5.4-mini provenance A local      top1=0.87 n=30
+  5.4-mini provenance A local_rep4 top1=0.90 n=30
+  5.4-mini provenance A local_corr top1=0.90 n=30
+  5.4-mini provenance B local      top1=1.00 n=30
+  5.4-mini provenance B local_rep4 top1=0.97 n=30
+  5.4-mini provenance B local_corr top1=1.00 n=30
+
+===============================================================
+7. E2 mean score change across all agents vs relay_min (paired)
+===============================================================
+  4o-mini  base       A relay_plain  d_mean_all +0.03 [-0.23,+0.29] n=30 clusters=30
+  4o-mini  base       A relay_filler d_mean_all -0.09 [-0.23,+0.03] n=30 clusters=30
+  4o-mini  base       A relay_ne4    d_mean_all +0.27 [-0.13,+0.65] n=30 clusters=30
+  4o-mini  base       B relay_plain  d_mean_all +0.31 [-0.01,+0.65] n=30 clusters=30
+  4o-mini  base       B relay_filler d_mean_all +0.23 [-0.01,+0.48] n=30 clusters=30
+  4o-mini  base       B relay_ne4    d_mean_all +0.54 [+0.22,+0.83] n=30 clusters=30
+  5.4-mini base       A relay_plain  d_mean_all +0.17 [-0.07,+0.43] n=30 clusters=30
+  5.4-mini base       A relay_filler d_mean_all +0.27 [+0.05,+0.48] n=30 clusters=30
+  5.4-mini base       A relay_ne4    d_mean_all -0.17 [-0.41,+0.09] n=30 clusters=30
+  5.4-mini base       B relay_plain  d_mean_all +0.03 [-0.17,+0.21] n=30 clusters=30
+  5.4-mini base       B relay_filler d_mean_all -0.07 [-0.33,+0.21] n=30 clusters=30
+  5.4-mini base       B relay_ne4    d_mean_all -0.08 [-0.35,+0.18] n=30 clusters=30
+  4o-mini  provenance A relay_plain  d_mean_all +0.34 [+0.08,+0.60] n=30 clusters=30
+  4o-mini  provenance B relay_plain  d_mean_all +0.27 [-0.02,+0.53] n=30 clusters=30
+  5.4-mini provenance A relay_plain  d_mean_all -0.10 [-0.33,+0.13] n=30 clusters=30
+  5.4-mini provenance B relay_plain  d_mean_all -0.11 [-0.29,+0.05] n=30 clusters=30
+
+==========================================================================================
+10. Per-template displacement contrasts (base), mean over the 5 instances of each template
+==========================================================================================
+  4o-mini  A relay_plain-relay_min: T0=+1.4 T1=+1.2 T2=+3.0 T3=+3.0 T4=+4.8 T5=+1.8 | template-level mean +2.53 [+1.63,+3.60] (6 templates)
+  4o-mini  A relay_filler-relay_min: T0=+0.8 T1=-0.4 T2=+0.4 T3=+0.2 T4=+1.0 T5=-0.6 | template-level mean +0.23 [-0.23,+0.70] (6 templates)
+  4o-mini  A relay_ne4-relay_ne1: T0=+4.6 T1=+2.2 T2=+3.8 T3=+4.0 T4=+4.6 T5=+4.8 | template-level mean +4.00 [+3.23,+4.57] (6 templates)
+  4o-mini  B relay_plain-relay_min: T0=+0.8 T1=+0.6 T2=+1.6 T3=+2.2 T4=+1.8 T5=-0.8 | template-level mean +1.03 [+0.17,+1.77] (6 templates)
+  4o-mini  B relay_filler-relay_min: T0=+1.0 T1=-0.4 T2=+0.0 T3=+0.8 T4=+0.4 T5=-0.8 | template-level mean +0.17 [-0.33,+0.67] (6 templates)
+  4o-mini  B relay_ne4-relay_ne1: T0=+3.0 T1=+6.2 T2=+3.6 T3=+4.0 T4=+6.4 T5=+4.6 | template-level mean +4.63 [+3.63,+5.67] (6 templates)
+  5.4-mini A relay_plain-relay_min: T0=+0.8 T1=+2.2 T2=+2.0 T3=-0.8 T4=-3.8 T5=-0.8 | template-level mean -0.07 [-1.80,+1.43] (6 templates)
+  5.4-mini A relay_filler-relay_min: T0=+1.6 T1=+0.4 T2=-1.6 T3=-1.4 T4=-3.4 T5=+0.6 | template-level mean -0.63 [-1.97,+0.70] (6 templates)
+  5.4-mini A relay_ne4-relay_ne1: T0=+0.8 T1=+0.2 T2=+2.6 T3=-0.6 T4=-3.8 T5=-0.2 | template-level mean -0.17 [-1.83,+1.27] (6 templates)
+  5.4-mini B relay_plain-relay_min: T0=-0.4 T1=+1.4 T2=-1.0 T3=+0.8 T4=+0.4 T5=-1.2 | template-level mean +0.00 [-0.73,+0.77] (6 templates)
+  5.4-mini B relay_filler-relay_min: T0=+3.4 T1=+0.6 T2=-1.4 T3=+0.6 T4=+2.2 T5=+1.2 | template-level mean +1.10 [-0.13,+2.33] (6 templates)
+  5.4-mini B relay_ne4-relay_ne1: T0=+1.4 T1=-3.0 T2=+0.4 T3=-1.6 T4=-0.6 T5=-1.0 | template-level mean -0.73 [-1.87,+0.40] (6 templates)
+
+===========================================================================================================
+5. MIT: Delta(provenance) - Delta(base), paired on unit, clustered (negative = less repetition sensitivity)
+===========================================================================================================
+  E1 4o-mini  view A: -0.16 [-0.68,+0.39] n=73 clusters=20
+  E1 4o-mini  view B: +0.34 [-0.01,+0.73] n=73 clusters=20
+  E1 5.4-mini view A: -0.29 [-1.33,+0.81] n=73 clusters=20
+  E1 5.4-mini view B: -0.30 [-0.77,+0.26] n=73 clusters=20
+  E2 4o-mini  view A: +1.67 [+0.40,+2.90] n=30 clusters=30
+  E2 4o-mini  view B: +2.70 [+1.50,+4.23] n=30 clusters=30
+  E2 5.4-mini view A: -0.33 [-1.87,+1.23] n=30 clusters=30
+  E2 5.4-mini view B: +0.97 [-0.13,+2.03] n=30 clusters=30
+
+=====================================================================
+MIT guardrails (Amendment 1): provenance vs base, same model and view
+=====================================================================
+  4o-mini  A origin naming relay_plain prov-base: +0.60 [+0.43,+0.77] n=30 clusters=30
+  4o-mini  A origin naming relay_min   prov-base: +0.20 [+0.07,+0.33] n=30 clusters=30
+  4o-mini  A local top-1        prov-base: -0.10 [-0.23,+0.00] n=30 clusters=30
+  4o-mini  B origin naming relay_plain prov-base: +0.37 [+0.20,+0.53] n=30 clusters=30
+  4o-mini  B origin naming relay_min   prov-base: +0.20 [+0.07,+0.37] n=30 clusters=30
+  4o-mini  B local top-1        prov-base: -0.05 [-0.13,+0.00] n=30 clusters=30
+  5.4-mini A origin naming relay_plain prov-base: +0.03 [+0.00,+0.10] n=30 clusters=30
+  5.4-mini A origin naming relay_min   prov-base: +0.00 [+0.00,+0.00] n=30 clusters=30
+  5.4-mini A local top-1        prov-base: -0.13 [-0.27,-0.03] n=30 clusters=30
+  5.4-mini B origin naming relay_plain prov-base: +0.00 [+0.00,+0.00] n=30 clusters=30
+  5.4-mini B origin naming relay_min   prov-base: +0.00 [+0.00,+0.00] n=30 clusters=30
+  5.4-mini B local top-1        prov-base: +0.00 [+0.00,+0.00] n=30 clusters=30
+
+======================================================================
+11. Exploratory (earlier gpt-4o-mini) vs confirmatory A0, cell by cell
+======================================================================
+  E1 view A: exploratory +1.58 [+0.95,+2.15] n=73 clusters=20   |   A0 +1.64 [+1.00,+2.21] n=73 clusters=20
+  E1 view B: exploratory +0.15 [-0.07,+0.38] n=73 clusters=20   |   A0 +0.38 [+0.15,+0.63] n=73 clusters=20
+  E2 view A relay_plain-relay_min: exploratory +2.80 [+1.83,+3.83] n=30 clusters=30   |   A0 +2.53 [+1.63,+3.43] n=30 clusters=30
+  E2 view A relay_filler-relay_min: exploratory +0.27 [-0.33,+0.80] n=30 clusters=30   |   A0 +0.23 [-0.33,+0.83] n=30 clusters=30
+  E2 view B relay_plain-relay_min: exploratory +1.27 [+0.43,+2.10] n=30 clusters=30   |   A0 +1.03 [+0.13,+1.80] n=30 clusters=30
+  E2 view B relay_filler-relay_min: exploratory +0.17 [-0.37,+0.67] n=30 clusters=30   |   A0 +0.17 [-0.50,+0.73] n=30 clusters=30
+
+====================================================================================================
+EXPLORATORY, not pre-registered (A2): model difference in E2 and change in corroboration sensitivity
+====================================================================================================
+  A2.1 E2 base: [(relay-origin)_plain - (relay-origin)_min]_4o-mini minus [same]_5.4-mini, paired on instance
+  EXPLORATORY view A: +2.60 [+0.80,+4.43] n=30 clusters=30
+  EXPLORATORY view B: +1.03 [-0.03,+2.10] n=30 clusters=30
+  A2.2 COR(provenance) - COR(base), COR = Remediator score local_corr - local_rep4, paired on instance
+  EXPLORATORY 4o-mini  view A: +0.70 [+0.13,+1.30] n=30 clusters=30  rep4 share>=9 base 0.03 prov 0.03
+  EXPLORATORY 4o-mini  view B: +0.03 [-0.57,+0.67] n=30 clusters=30  rep4 share>=9 base 0.07 prov 0.03
+  EXPLORATORY 5.4-mini view A: -1.20 [-1.97,-0.50] n=30 clusters=30  rep4 share>=9 base 0.40 prov 0.30
+  EXPLORATORY 5.4-mini view B: -0.07 [-0.57,+0.40] n=30 clusters=30  rep4 share>=9 base 0.73 prov 0.57  SATURATED under ceiling rule: base, provenance

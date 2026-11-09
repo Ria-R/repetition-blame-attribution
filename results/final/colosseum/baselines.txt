@@ -1,0 +1,10 @@
+sweep                      n     chance  most_talk least_talk    shapley          A          B          C         AL         BL
+pilot_n4                  29       0.50       0.00       1.00       0.55       0.00       0.24       0.28          -          -
+pilot_n4_aggr             10       0.50       0.00       1.00       0.60       0.00       0.70       0.50          -          -
+quickstart_modal           3       0.50       0.17       0.83       0.33          -          -          -          -          -
+scripted_bait             10       0.50       0.00       1.00       0.90       0.10       0.10       0.10          -          -
+scripted_bait_n8          10       0.25       0.00       0.93       0.15       0.20       0.00       0.00          -          -
+scripted_bait_silent      10       0.50       0.00       1.00       0.90       0.10       0.10       0.10          -          -
+scripted_steal            10       0.50       0.00       1.00       0.80       0.20       0.20       0.60          -          -
+scripted_steal_n8         10       0.25       0.00       1.00       0.30       0.30       0.10       0.50          -          -
+scripted_steal_silent     10       0.50       0.00       1.00       0.60       0.00       0.00       0.90          -          -

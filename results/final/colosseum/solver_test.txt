@@ -1,0 +1,1 @@
+tested 112 mismatch 0 runs with tied optima 66 skipped(n>5) 30
