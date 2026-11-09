@@ -49,7 +49,7 @@ def save(fig, name, rows, header):
 # ------------------------------------------------------------------------------------------------ Fig 1
 def fig1():
     fig, ax = plt.subplots(figsize=(3.4, 2.5))
-    ax.set_xlim(0, 10); ax.set_ylim(0, 7.4); ax.axis("off")
+    ax.set_xlim(0, 10); ax.set_ylim(0, 7.9); ax.axis("off")
     box = dict(Monitor=(0.2, 4.6), Coordinator=(3.6, 4.6), Remediator=(7.0, 4.6), Analyst=(3.6, 1.9), Scribe=(7.0, 1.9))
     W, H = 2.8, 1.0
     for name, (x, y) in box.items():
@@ -59,12 +59,13 @@ def fig1():
         ax.text(x + W / 2, y + H / 2, name, ha="center", va="center", fontsize=8)
     arr = dict(arrowstyle="-|>", lw=0.9, color="black")
     ax.annotate("", xy=(3.6, 5.1), xytext=(3.0, 5.1), arrowprops=arr)
-    ax.text(3.3, 5.75, "1. diagnosis", ha="center", fontsize=6.5)
+    ax.text(3.3, 6.75, "1. diagnosis", ha="center", va="bottom", fontsize=6.5)
+    ax.text(3.3, 5.75, "(wrong in relay\nconditions)", ha="center", va="bottom", fontsize=6.5)
     ax.annotate("", xy=(7.0, 5.1), xytext=(6.4, 5.1), arrowprops=arr)
-    ax.text(6.7, 5.75, "2. forwards,\ncites Monitor", ha="center", fontsize=6.5)
-    ax.text(5.0, 6.9, "x1 in relay_min, x4 in relay_plain", ha="center", fontsize=6.5, style="italic")
+    ax.text(6.7, 6.75, "2. forwards,\ncites Monitor", ha="center", va="bottom", fontsize=6.5)
+    ax.text(6.7, 5.75, "x1 in relay_min,\nx4 in relay_plain", ha="center", va="bottom", fontsize=6.5, style="italic")
     ax.annotate("", xy=(7.6, 4.6), xytext=(4.6, 2.9), arrowprops=dict(arrowstyle="-|>", lw=0.9, color="black", ls="--"))
-    ax.text(4.2, 3.55, "3. counter-\nevidence", ha="right", fontsize=6.5)
+    ax.text(4.2, 3.55, "3. counter-evidence\n(posted after all\nCoordinator forwards)", ha="right", va="center", fontsize=6.5)
     ax.text(8.4, 4.25, "4. acts", ha="center", fontsize=6.5)
     ax.text(0.1, 0.7, "View A: auditor sees the shared log only.\nView B: shared log + verified postmortem.",
             ha="left", va="center", fontsize=6.5)
